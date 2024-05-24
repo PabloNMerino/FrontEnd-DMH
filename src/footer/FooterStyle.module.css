@@ -1,0 +1,26 @@
+footer {
+    
+    background-color: #00050e;
+    color: white;
+    font-family: "Archivo", sans-serif;
+    text-align: center;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+footer p {
+    font-size: 12px;
+}
+
+@media (min-width: 992px) {
+    footer {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    footer p {
+        font-size: 15px;
+    }
+}
