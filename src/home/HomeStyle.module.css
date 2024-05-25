@@ -1,0 +1,74 @@
+.homeSection {
+    background-image: url("../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    font-family: "Archivo", sans-serif;
+    color: white;
+}
+
+.homeHeader {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo {
+    font-weight: 700;
+    margin: 10px 0 5px 0;
+}
+.iconAndNameContainer {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.iconName {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.4 );
+}
+
+.iconName p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.userName {
+    font-weight: 600;
+}
+
+.verPerfilBtn {
+    width: fit-content;
+    height: 15px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.4 );
+    margin-top: 13px;
+}
+
+.verPerfilBtn p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.cardsContainer {
+    background-image: url("../assets/cards.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    width: 90%;
+    margin: 0 auto;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardsContainer p {
+    margin: 0;
+}
