@@ -7,7 +7,7 @@ const transferencias = [
         id: 1,
         userId: "Pablo Merino",
         senderId: "Pablo Merino",
-        receiverid: "Dafni Vamvakianos",
+        receiverId: "Dafni Vamvakianos",
         amountofMoney: 1200.0,
         date: "2025-03-07"
     },
@@ -23,7 +23,7 @@ const transferencias = [
         id: 3,
         userId: "Pablo Merino",
         senderId: "Pablo Merino",
-        receiverid: "Dafni Vamvakianos",
+        receiverId: "Dafni Vamvakianos",
         amountofMoney: 200.0,
         date: "2025-03-07"
     },
@@ -53,6 +53,7 @@ const transferencias = [
                     )
                 })
             }
+            <p className={Styles.seeMoreBtn}>Ver Mas</p>
         </section>
     )
 }
