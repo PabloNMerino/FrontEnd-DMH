@@ -1,0 +1,38 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transferInfo {
+    color: black;
+}
+
+.transferInfo:first-child {
+    font-size: 16px;
+    padding-top: 6px;
+}
+
+.date {
+    font-size: 12px;
+    padding: 4px 0 6px 0;
+    color: grey;
+}
+
+.card p{
+    margin: 0;
+}
+
+.egreso {
+    color: red;
+}
+
+.ingreso {
+    color: green;
+}
+
+.separation {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}

@@ -5,36 +5,41 @@ export const HomeActivity = () => {
 const transferencias = [
     {
         id: 1,
-        senderId: 1,
-        receiverid: 2,
+        userId: "Pablo Merino",
+        senderId: "Pablo Merino",
+        receiverid: "Dafni Vamvakianos",
         amountofMoney: 1200.0,
         date: "2025-03-07"
     },
     {
         id: 2,
-        senderId: 1,
-        receiverid: 2,
+        userId: "Pablo Merino",
+        senderId: "Dafni Vamvakianos",
+        receiverid: "Pablo Merino",
         amountofMoney: 100.0,
         date: "2025-03-07"
     },
     {
         id: 3,
-        senderId: 1,
-        receiverid: 2,
+        userId: "Pablo Merino",
+        senderId: "Pablo Merino",
+        receiverid: "Dafni Vamvakianos",
         amountofMoney: 200.0,
         date: "2025-03-07"
     },
     {
         id: 4,
-        senderId: 1,
-        receiverId: 2,
+        userId: "Pablo Merino",
+        senderId: "Pablo Merino",
+        receiverId: "Dafni Vamvakianos",
         amountofMoney: 300.0,
         date: "2025-03-07"
     },
     {
         id: 5,
-        senderId: 1,
-        receiverId: 2,
+        userId: "Pablo Merino",
+        senderId: "Dafni Vamvakianos",
+        receiverId: "Pablo Merino",
         amountofMoney: 400.0,
         date: "2025-03-07"
     }
