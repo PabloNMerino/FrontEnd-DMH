@@ -1,0 +1,33 @@
+.transferencesSection {
+    background-image: url("../../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    font-family: "Archivo", sans-serif;
+}
+
+.transferencesArticle {
+    width: 90%;
+    margin: 10px auto 0 auto;
+}
+
+.transferencesContainer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 25px 0;
+}
+
+.returnHomeTop, .returnHomeBottom {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 2px 4px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.returnHomeBottom {
+    margin: auto;
+}

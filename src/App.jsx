@@ -6,6 +6,7 @@ import { Register } from './register/Register'
 import { Footer } from './footer/Footer'
 import { Home } from './home/Home'
 import { Profile } from './profile/Profile'
+import { Transferences } from './homeComponents/cards/Tranferences'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     {path:'/register', element: <Register/>},
     {path:'/home', element: <Home/>},
     {path:'/my-profile', element: <Profile/>},
+    {path:'/all-transferences', element: <Transferences/>},
     {path:'*', element: <div>Not Found</div>}
   ])
 
