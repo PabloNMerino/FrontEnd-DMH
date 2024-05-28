@@ -6,7 +6,8 @@ import { Register } from './register/Register'
 import { Footer } from './footer/Footer'
 import { Home } from './home/Home'
 import { Profile } from './profile/Profile'
-import { Transferences } from './homeComponents/cards/Tranferences'
+import { Transferences } from './homeComponents/transferences/Tranferences'
+import { Cards } from './homeComponents/cards/Cards'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     {path:'/home', element: <Home/>},
     {path:'/my-profile', element: <Profile/>},
     {path:'/all-transferences', element: <Transferences/>},
+    {path:'/cards', element: <Cards/>},
     {path:'*', element: <div>Not Found</div>}
   ])
 

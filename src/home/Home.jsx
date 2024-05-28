@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { CurrentMoney } from '../homeComponents/currentMoney/CurrentMoney'
 import { HomeActivity } from '../homeComponents/homeActivity/HomeActivity'
 import Styles from './HomeStyle.module.css'
@@ -18,9 +19,11 @@ export const Home = () => {
                     </div>
                 </article>
                 <CurrentMoney/>
-                <article className={Styles.cardsContainer}>
-                    <p>Ver tarjetas asociadas</p>
-                </article>
+                <Link className={Styles.linkToCards} to="/cards">
+                    <article className={Styles.cardsContainer}>
+                        <p>Ver tarjetas asociadas</p>
+                    </article>
+                </Link>
             </div>
             <div>
                 <HomeActivity/>

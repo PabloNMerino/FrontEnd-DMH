@@ -14,3 +14,7 @@
     color: blue;
     padding: 7px 0;
 }
+
+.linkToTransferences {
+    text-decoration: none;
+}

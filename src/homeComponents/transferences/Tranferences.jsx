@@ -50,15 +50,17 @@ export const Transferences = () => {
     return(
         <section className={Styles.transferencesSection}>
             <article className={Styles.transferencesArticle}>
-                <Link className={Styles.returnHomeTop}to='/home'>Volver a home</Link>
-                <div className={Styles.transferencesContainer}>
-                    {
-                        transferencias.map((transferencia, index) => {
-                            return(
-                                <ActivityCard {...transferencia} key={index} />
-                            )
-                        })
-                    }
+                <div>
+                    <Link className={Styles.returnHomeTop}to='/home'>Volver a home</Link>
+                    <div className={Styles.transferencesContainer}>
+                        {
+                            transferencias.map((transferencia, index) => {
+                                return(
+                                    <ActivityCard {...transferencia} key={index} />
+                                )
+                            })
+                        }
+                    </div>
                 </div>
                 <Link className={Styles.returnHomeBottom}to='/home'>Volver a home</Link>
             </article>

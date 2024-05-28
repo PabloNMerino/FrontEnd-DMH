@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ActivityCard } from '../activityCard/ActivityCards'
 import Styles from './HomeActivityStyle.module.css'
 
@@ -53,7 +54,7 @@ const transferencias = [
                     )
                 })
             }
-            <p className={Styles.seeMoreBtn}>Ver Mas</p>
+            <Link to="/all-transferences" className={Styles.linkToTransferences}><p className={Styles.seeMoreBtn}>Ver Mas</p></Link>
         </section>
     )
 }
