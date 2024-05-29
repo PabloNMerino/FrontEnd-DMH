@@ -37,3 +37,8 @@
     font-size: 13px;
     text-align: center;
 }
+
+.linkInfo {
+    text-decoration: none;
+    color: white;
+}
