@@ -50,7 +50,9 @@ const transferencias = [
             {
                 transferencias.map((transferencia, index) => {
                     return(
-                        <ActivityCard {...transferencia} key={index}/>
+                        <Link key={index} className={Styles.detailsLink} to='/details'>
+                            <ActivityCard {...transferencia}/>
+                        </Link>
                     )
                 })
             }

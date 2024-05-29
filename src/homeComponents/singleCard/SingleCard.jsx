@@ -10,6 +10,7 @@ export const SingleCard = ({id, holder, number, expirationDate, cvv}) => {
             <p>{number}</p>
             <p>Expiration: {expirationDate}</p>
             <p>CVV: {cvv}</p>
+            <button className={Styles.deleteCard}>Borrar tarjeta</button>
         </article>
     )
 }

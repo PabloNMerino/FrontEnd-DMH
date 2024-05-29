@@ -1,8 +1,33 @@
 .cardImg{
     width: 50px;
 }
+.singleCardArticle {
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
 .singleCardArticle p {
-    color: white;
     margin: 0;
+}
+
+.deleteCard {
+    background-color: rgb(245, 69, 49);
+    color: white;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.deleteCard:hover {
+    background-color: rgb(184, 47, 37);
+    transition: 0.2s;
 }

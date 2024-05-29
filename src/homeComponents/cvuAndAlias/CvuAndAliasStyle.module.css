@@ -1,4 +1,4 @@
-.transferencesSection {
+.cvuSection{
     background-image: url("../../assets/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,33 +7,28 @@
     font-family: "Archivo", sans-serif;
 }
 
-.transferencesArticle {
+.cvuArticle {
     width: 90%;
     margin: 40px auto 0 auto;
-    display: flex;
-    flex-direction: column;
 }
 
-.transferencesContainer {
+.dataContainer {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 10px;
     box-sizing: border-box;
     border-radius: 5px;
-    margin: 25px 0;
+    font-size: 13px;
+
 }
 
-.returnHomeTop, .returnHomeBottom {
+.titleData {
+    color: rgb(94, 100, 110);
+}
+
+.dataBtn {
+    text-decoration: none;
     background-color: rgba(255, 255, 255, 0.4);
-    padding: 2px 5px;
+    padding: 4px 6px;
     border-radius: 5px;
-    text-decoration: none;
     color: white;
-}
-
-.returnHomeBottom {
-    margin: auto;
-}
-
-.detailsLink {
-    text-decoration: none;
 }

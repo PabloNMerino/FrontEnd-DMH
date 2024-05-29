@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { SingleCard } from '../singleCard/SingleCard'
 import Styles from './CardsStyle.module.css'
 
@@ -29,13 +30,21 @@ export const Cards = () => {
 
     return(
         <section className={Styles.cardsSection}>
-            {
-                cardList.map((card, index) => {
-                    return(
-                        <SingleCard {...card} key={index}/>
-                    )
-                })
-            }
+            <article className={Styles.cardsArticle}>
+                <div>
+                    <Link className={Styles.returnHomeTop}to='/home'>Volver a home</Link>
+                    <div className={Styles.cardsContainer}>
+                        {
+                            cardList.map((card, index) => {
+                                return(
+                                    <SingleCard {...card} key={index}/>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                <Link className={Styles.returnHomeBottom}to='/home'>Volver a home</Link>
+            </article>
         </section>
     )
 }

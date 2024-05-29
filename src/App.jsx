@@ -8,6 +8,8 @@ import { Home } from './home/Home'
 import { Profile } from './profile/Profile'
 import { Transferences } from './homeComponents/transferences/Tranferences'
 import { Cards } from './homeComponents/cards/Cards'
+import { TransferDetails } from './homeComponents/transferDetails/TransferDetails'
+import { CvuAndAlias } from './homeComponents/cvuAndAlias/CvuAndAlias'
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
     {path:'/my-profile', element: <Profile/>},
     {path:'/all-transferences', element: <Transferences/>},
     {path:'/cards', element: <Cards/>},
+    {path:'/details', element: <TransferDetails/>},
+    {path:'/account-information', element: <CvuAndAlias/>},
     {path:'*', element: <div>Not Found</div>}
   ])
 
