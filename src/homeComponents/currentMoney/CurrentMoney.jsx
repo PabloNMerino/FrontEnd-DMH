@@ -10,17 +10,17 @@ export const CurrentMoney = () => {
                 <p className={Styles.amount}>$32500</p>
             </div>
             <div className={Styles.buttons}>
-                <Link className={Styles.linkInfo}>
+                <Link className={Styles.linkInfo} to='/account-information'>
                     <div className={Styles.btn}>
                         <p>Ver CVU y Alias</p>
                     </div>
                 </Link>
-                <Link className={Styles.linkInfo}>
+                <Link className={Styles.linkInfo} to='/add-money'>
                     <div className={Styles.btn}>
                         <p>Ingresar Dinero</p>
                     </div>
                 </Link>
-                <Link className={Styles.linkInfo}>
+                <Link className={Styles.linkInfo} to='/send-money'>
                     <div className={Styles.btn}>
                         <p>Enviar Dinero</p>
                     </div>

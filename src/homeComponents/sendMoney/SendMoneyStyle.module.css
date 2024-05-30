@@ -1,0 +1,56 @@
+.sendMoneySection{
+    background-image: url("../../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    font-family: "Archivo", sans-serif;
+    color: white;
+}
+
+.sendMoneyArticle {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    text-align: center;
+    font-weight: 500;
+}
+
+.sendMoneyArticle form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.inputContainer input {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    height: 30px;
+    padding: 2px 4px;
+}
+
+.btnSend {
+    align-self: center;
+}
+
+.atrasBtn {
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    margin-top: 40px;
+}

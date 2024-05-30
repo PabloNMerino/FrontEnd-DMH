@@ -10,6 +10,8 @@ import { Transferences } from './homeComponents/transferences/Tranferences'
 import { Cards } from './homeComponents/cards/Cards'
 import { TransferDetails } from './homeComponents/transferDetails/TransferDetails'
 import { CvuAndAlias } from './homeComponents/cvuAndAlias/CvuAndAlias'
+import { AddMoney } from './homeComponents/addMoney/AddMoney'
+import { SendMoney } from './homeComponents/sendMoney/SendMoney'
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
     {path:'/cards', element: <Cards/>},
     {path:'/details', element: <TransferDetails/>},
     {path:'/account-information', element: <CvuAndAlias/>},
+    {path:'/add-money', element: <AddMoney/>},
+    {path:'/send-money', element: <SendMoney/>},
     {path:'*', element: <div>Not Found</div>}
   ])
 

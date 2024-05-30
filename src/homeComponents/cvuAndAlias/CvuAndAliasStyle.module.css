@@ -10,6 +10,10 @@
 .cvuArticle {
     width: 90%;
     margin: 40px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .dataContainer {
@@ -18,7 +22,7 @@
     box-sizing: border-box;
     border-radius: 5px;
     font-size: 13px;
-
+    width: 100%;
 }
 
 .titleData {

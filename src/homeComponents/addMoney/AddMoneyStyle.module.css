@@ -1,0 +1,95 @@
+.addMoneySection {
+    background-image: url("../../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    font-family: "Archivo", sans-serif;
+}
+.title{
+    color: white;
+    font-weight: 500;
+    text-align: center;
+}
+.addMoneyArticle {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chooseCardText {
+    color: white;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.selected {
+    background-color: rgba(255, 255, 255, 0.9);
+    
+}
+
+.notSelected {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.cardContainer p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.cardContainer:hover {
+cursor: pointer;
+}
+
+
+.card{
+    width: 40px;
+}
+
+.inputBox{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 5px;
+}
+
+.inputBox input {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    color: white;
+    height: 30px;
+    padding: 2px 4px;
+}
+
+.addMoneyBtn {
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    width: fit-content;
+    align-self: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.atrasBtn {
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    margin-top: 40px;
+}
