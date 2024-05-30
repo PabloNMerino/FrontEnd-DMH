@@ -43,6 +43,11 @@ export const Cards = () => {
                         }
                     </div>
                 </div>
+                <Link to="/register-card">
+                    <div className={Styles.plusBtn}>
+                            <img src="src/assets/boton-mas.png" alt="mas" />
+                    </div>
+                </Link>
                 <Link className={Styles.returnHomeBottom}to='/home'>Volver a home</Link>
             </article>
         </section>

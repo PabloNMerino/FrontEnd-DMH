@@ -30,3 +30,17 @@
 .cardsContainer {
     margin-top: 20px;
 }
+
+.plusBtn {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+
+.plusBtn img {
+    width: 40px;
+}

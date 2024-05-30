@@ -1,0 +1,62 @@
+.registerSection {
+    background-image: url("../../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    font-family: "Archivo", sans-serif;
+}
+
+.newImg {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.registerArticle {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.registerTitle {
+    color: white;
+    font-weight: 500;
+    text-align: center;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.formInput input {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    height: 30px;
+    padding: 2px 4px;
+}
+
+.cvv {
+    width: 30%;
+}
+
+.registerBtn {
+    width: fit-content;
+    align-self: center;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+}
