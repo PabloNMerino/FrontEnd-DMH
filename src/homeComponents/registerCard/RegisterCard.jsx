@@ -32,7 +32,7 @@ export const RegisterCard = () => {
                         </div>
                         <div className={Styles.formInput}>
                             <label htmlFor="holder">Fecha de expiracion</label>
-                            <input type="text" value={expDate} onChange={handleDateChange} maxLength="5"/>
+                            <input type="month" /*value={expDate} onChange={handleDateChange} maxLength="5"*//>
                         </div>
                         <div className={`${Styles.formInput} ${Styles.cvv}`}>
                             <label htmlFor="holder">CVV</label>

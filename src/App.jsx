@@ -13,6 +13,9 @@ import { AddMoney } from './homeComponents/addMoney/AddMoney'
 import { SendMoney } from './homeComponents/sendMoney/SendMoney'
 import { RegisterCard } from './homeComponents/registerCard/RegisterCard'
 import { Profile } from './homeComponents/profile/Profile'
+import { UpdateProfile } from './homeComponents/updateProfile/UpdateProfile'
+import { UpdatePassword } from './homeComponents/updatePassword/UpdatePassword'
+import { UpdateAlias } from './homeComponents/updateAlias/UpdateAlias'
 
 function App() {
 
@@ -29,6 +32,9 @@ function App() {
     {path:'/send-money', element: <SendMoney/>},
     {path:'/register-card', element: <RegisterCard/>},
     {path:'/profile', element: <Profile/>},
+    {path:'/update-profile', element: <UpdateProfile/>},
+    {path:'/update-password', element: <UpdatePassword/>},
+    {path:'/update-alias', element: <UpdateAlias/>},
     {path:'*', element: <div>Not Found</div>}
   ])
 

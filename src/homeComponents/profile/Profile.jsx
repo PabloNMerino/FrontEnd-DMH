@@ -16,8 +16,8 @@ export const Profile = () => {
                         <p><span>Telefono: </span> 3794845796</p>
                     </div>
                     <div className={Styles.btns}>
-                        <Link className={Styles.updateLink}>Actualizar Informacion</Link>
-                        <Link className={Styles.updateLink}>Cambiar Contraseña</Link>
+                        <Link className={Styles.updateLink} to="/update-profile">Actualizar Informacion</Link>
+                        <Link className={Styles.updateLink} to="/update-password">Cambiar Contraseña</Link>
                     </div>
                 </div>
                 <Link to="/home" className={Styles.dataBtn}>Atras</Link>
