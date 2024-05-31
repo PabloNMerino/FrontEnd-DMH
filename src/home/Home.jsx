@@ -14,9 +14,11 @@ export const Home = () => {
                         <div className={Styles.iconName}><p>PM</p></div>
                         <span>Hola!, </span><span className={Styles.userName}>Pablo Nicolás Merino</span>
                     </div>
-                    <div className={Styles.verPerfilBtn}>
-                        <p>Ver Perfil</p>
-                    </div>
+                    <Link to="/profile" className={Styles.linkProfile}>
+                        <div className={Styles.verPerfilBtn}>
+                            <p>Ver Perfil</p>
+                        </div>
+                    </Link>
                 </article>
                 <CurrentMoney/>
                 <Link className={Styles.linkToCards} to="/cards">

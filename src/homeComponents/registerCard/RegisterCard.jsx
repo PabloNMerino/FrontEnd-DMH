@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Styles from './RegisterCardStyle.module.css'
+import { Link } from 'react-router-dom'
 
 export const RegisterCard = () => {
 
@@ -40,6 +41,7 @@ export const RegisterCard = () => {
                     </form>
                 </div>
                 <button className={Styles.registerBtn}>Registrar Tarjeta</button>
+                <Link to="/cards" className={Styles.atrasBtn}>Atras</Link>
             </article>
         </section>
     )

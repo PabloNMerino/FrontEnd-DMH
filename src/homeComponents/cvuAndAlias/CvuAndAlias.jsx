@@ -6,6 +6,7 @@ export const CvuAndAlias = () => {
     return(
         <section className={Styles.cvuSection}>
             <article className={Styles.cvuArticle}>
+                <h3>CVU y Alias</h3>
                 <div className={Styles.dataContainer}>
                     <p><span className={Styles.titleData}>CVU:</span> 1234123412341234123412</p>
                     <p><span className={Styles.titleData}>ALIAS:</span> RE.LOCO.EL.PIBE</p>

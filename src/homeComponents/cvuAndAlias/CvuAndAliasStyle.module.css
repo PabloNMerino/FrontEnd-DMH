@@ -9,11 +9,16 @@
 
 .cvuArticle {
     width: 90%;
-    margin: 40px auto 0 auto;
+    margin: 20px auto 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+}
+
+.cvuArticle h3 {
+    color: white;
+    font-weight: 500;
 }
 
 .dataContainer {

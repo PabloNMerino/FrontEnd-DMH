@@ -23,6 +23,11 @@
     gap: 7px;
 }
 
+.linkProfile {
+    color: white;
+    text-decoration: none;
+}
+
 .iconName {
     width: 25px;
     height: 25px;
