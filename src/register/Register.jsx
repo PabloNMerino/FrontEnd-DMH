@@ -36,6 +36,13 @@ export const Register = () => {
         setUser({...user, email: e.target.value})
     }
 
+    const handlePhoneChange = (e) => {
+        setResponseError(false)
+        setErrors([])
+        setDisableBtn(false)
+        setUser({...user, phoneNumber: e.target.value})
+    }
+
     const handlePasswordChange = (e) => {
         setResponseError(false)
         setErrors([])
@@ -83,6 +90,10 @@ export const Register = () => {
             errors.push('El correo electrónico es inválido');
         }
 
+        if (user.phoneNumber.trim() === '') {
+            errors.push('El numero telefonico es obligatorio');
+        }
+
         if (user.password.trim() === '') {
             errors.push('No olvides ingresar contraseña');
         } else if (user.password.length < 4 || user.password.length > 15) {
@@ -102,7 +113,7 @@ export const Register = () => {
     const handleRegister = (e) => {
         e.preventDefault(); 
         if(validateRegisterForm() === 0) {
-            console.log("Registro exitoso exitoso");
+            console.log("Registro exitoso");
         }
         setDisableBtn(true)
     }
@@ -126,11 +137,15 @@ export const Register = () => {
                             <label htmlFor="username">Username</label>
                             <input type="text" id='username' requiredvalue={user.username} onChange={(e) => handleUsernameChange(e)} />
                         </div>
-                    </div>
-                    <div>
                         <div className={Styles.inputContainer}>
                             <label htmlFor="email">Email</label>
                             <input type="email" id='email' required value={user.email} onChange={(e) => handleMailChange(e)} />
+                        </div>
+                    </div>
+                    <div>
+                        <div className={Styles.inputContainer}>
+                            <label htmlFor="number">Phone Number</label>
+                            <input type="tel" id='number' required value={user.phoneNumber} onChange={(e) => handlePhoneChange(e)} />
                         </div>
                         <div className={Styles.inputContainer}>
                             <label htmlFor="password">Password</label>

@@ -1,5 +1,6 @@
 .transferences {
     width: 90%;
+    max-width: 1000px;
     margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.9 );
     border-radius: 5px;
@@ -18,4 +19,6 @@
 .linkToTransferences, .detailsLink {
     text-decoration: none;
 }
+
+
 

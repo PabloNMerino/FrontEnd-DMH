@@ -89,8 +89,8 @@
 @media (min-width: 992px) {
     .inputFields {
         display: flex;
-        align-items: center;
-        gap: 15px;
+        align-items: flex-start;
+        gap: 30px;
         margin-top: 20px;
     } 
 

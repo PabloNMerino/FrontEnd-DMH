@@ -9,6 +9,7 @@
 
 .updateInfoArticle{
     width: 90%;
+    max-width: 600px;
     margin: 20px auto 0 auto;
     display: flex;
     flex-direction: column;
@@ -68,4 +69,20 @@
     color: white;
     width: fit-content;
     margin-top: 40px;
+}
+
+.errorMsg {
+    background-color: rgb(226, 117, 117);
+    color: rgb(115, 25, 25);
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: "Archivo", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.errorsContainer {
+    margin-bottom: 20px;
+    align-self: center;
 }

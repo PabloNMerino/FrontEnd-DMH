@@ -9,6 +9,7 @@
 
 .cvuArticle {
     width: 90%;
+    max-width: 600px;
     margin: 20px auto 0 auto;
     display: flex;
     flex-direction: column;
