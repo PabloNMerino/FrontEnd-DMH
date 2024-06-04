@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import Styles from './RegisterStyle.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Oval } from 'react-loader-spinner'
 
 export const Register = () => {
 
@@ -7,6 +9,9 @@ export const Register = () => {
     const [errors, setErrors] = useState([])
     const [responseError, setResponseError] = useState(false)
     const [disableBtn, setDisableBtn] = useState(false)
+    const [existingUser, setExistingUser] = useState(false)
+    const [status, setStatus] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const handleNameChange = (e) => {
         setResponseError(false)
@@ -110,12 +115,64 @@ export const Register = () => {
         return errors.length;
     };
 
+    const DynamicLetter = ({ status }) => {
+        if (status === 201) {
+          return (
+            <div className={`${Styles.msgBox} ${Styles.success}`}>
+              <p>Registro exitoso! verifique su correo electronico en su casilla de email para poder <Link to="/login">Loguearse</Link></p>
+            </div>
+          );
+        } else {
+            return (
+                <button className={Styles.registerBtn} type="submit" onClick={(e) => handleRegister(e)}>Registrarse</button>
+              );
+        }
+
+      };
+
+
+    const url = "http://localhost:8084/user/register"
+
     const handleRegister = (e) => {
         e.preventDefault(); 
+        
         if(validateRegisterForm() === 0) {
-            console.log("Registro exitoso");
+            setLoading(true)
+
+            const userRegistration = {
+                name: user.name,
+                lastName: user.lastName,
+                username: user.username,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                password: user.password
+            }
+
+            console.log(JSON.stringify(userRegistration));
+
+            const settings = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userRegistration)
+            }
+
+            fetch(url, settings)
+                .then(response => {
+                    setStatus(response.status)
+                    if(response.status===201) {
+                        console.log("Registro exitoso");
+                        setLoading(false)
+                    } else if(response.status===400) {
+                        console.log("error - usuario existente");
+                        setExistingUser(true)
+                        setLoading(false)
+                    } 
+                })
+            
+
         }
-        setDisableBtn(true)
     }
 
 
@@ -157,7 +214,18 @@ export const Register = () => {
                         </div>
                     </div>
                 </div>
-                <button className={Styles.registerBtn} type="submit" onClick={(e) => handleRegister(e)}>Registrarse</button>
+                {
+                    !loading? <DynamicLetter status={status}/> : <div className={Styles.loader}><Oval
+                    visible={true}
+                    height="50"
+                    width="50"
+                    color="#4fa94d"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    /></div>
+                }
+                
                 {
                     errors.length>0? <div className={Styles.errorsContainer}>
                         {
@@ -170,6 +238,11 @@ export const Register = () => {
                     </div> : <div></div>
                 }
             </form>
+            {
+                existingUser?             <div className={`${Styles.msgBox} ${Styles.failBb}`}>
+                <p>El username o email ya se encuentra ocupado</p>
+              </div> : <div></div>
+            }
         </section>
     )
 }

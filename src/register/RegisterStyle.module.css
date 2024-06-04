@@ -62,6 +62,7 @@
     margin-top: 40px;
     color: white;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .loginBtn:hover {
@@ -84,6 +85,30 @@
 
 .errorsContainer {
     margin-bottom: 20px;
+}
+
+.msgBox{
+    box-sizing: border-box;
+    padding: 4px 8px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.success {
+    background-color: rgb(68, 152, 88);
+}
+
+.failBb {
+    background-color:  rgb(115, 25, 25);
+}
+
+.loader {
+    margin-top: 20px;
+}
+.msgBox p {
+    margin: 0;
+    color: white;
+    font-family: "Archivo", sans-serif;
 }
 
 @media (min-width: 992px) {
