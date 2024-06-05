@@ -83,3 +83,22 @@
 .errorMsg:first-child {
     margin-top: 30px;
 }
+
+
+.msgBox{
+    box-sizing: border-box;
+    padding: 4px 8px;
+    border-radius: 5px;
+    margin: 10px;
+    background-color:  rgb(115, 25, 25);
+}
+
+.msgBox p {
+    margin: 0;
+    color: white;
+    font-family: "Archivo", sans-serif;
+}
+
+.loader {
+    margin-top: 20px;
+}

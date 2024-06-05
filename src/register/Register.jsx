@@ -148,8 +148,6 @@ export const Register = () => {
                 password: user.password
             }
 
-            console.log(JSON.stringify(userRegistration));
-
             const settings = {
                 method: "POST",
                 headers: {
@@ -170,8 +168,6 @@ export const Register = () => {
                         setLoading(false)
                     } 
                 })
-            
-
         }
     }
 

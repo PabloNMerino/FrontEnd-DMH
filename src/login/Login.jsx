@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import Styles from './LoginStyle.module.css'
+import { Oval } from 'react-loader-spinner'
 
 export const Login = () => {
 
@@ -8,11 +10,15 @@ export const Login = () => {
     const [errors, setErrors] = useState([])
     const [responseError, setResponseError] = useState(false)
     const [disableBtn, setDisableBtn] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
+    const[logError, setLogError] = useState(false)
 
     const handleMailChange = (e) => {
         setResponseError(false)
         setErrors([])
         setDisableBtn(false)
+        setLogError(false)
         setUser({...user, email: e.target.value})
     }
 
@@ -20,6 +26,7 @@ export const Login = () => {
         setResponseError(false)
         setErrors([])
         setDisableBtn(false)
+        setLogError(false)
         setUser({...user, password: e.target.value})
     }
 
@@ -44,8 +51,43 @@ export const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault(); 
+
+        const userLogin = {
+            email: user.email,
+            password: user.password
+        }
+
+        const settings = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userLogin)
+        }
+
+        const url = "http://localhost:8084/user/login"
+
         if(validateLoginForm() === 0) {
-            console.log("login exitoso");
+            setLoading(true)
+
+            fetch(url, settings)
+                .then(response => {
+                    if(response.status==200) {
+                        setLoading(false)
+                        return response.json()
+                    } else if (response.status==500) {
+                        setLoading(false)
+                        setLogError(true)
+                    }
+                })
+                .then(data => {
+                    if(data.access_token!=null) {
+                        sessionStorage.setItem('token', data.access_token)
+                        navigate("/home")
+                    }   
+                })
+
+            
         }
         setDisableBtn(true)
     }
@@ -64,7 +106,18 @@ export const Login = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" id='password' required value={user.password} onChange={(e) => handlePasswordChange(e)} />
                 </div>
-                <button className={Styles.loginBtn} type="submit" disabled={disableBtn} onClick={(e) => handleLogin(e)} >Iniciar sesion</button>
+                {
+                    !loading? <button className={Styles.loginBtn} type="submit" disabled={disableBtn} onClick={(e) => handleLogin(e)} >Iniciar sesion</button> : <div className={Styles.loader}><Oval
+                    visible={true}
+                    height="50"
+                    width="50"
+                    color="#4fa94d"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    /></div>
+                }
+                
                 {
                     errors.length>0? <div>
                         {
@@ -75,6 +128,11 @@ export const Login = () => {
                             })
                         }
                     </div> : <div></div>
+                }
+                {
+                    logError?  <div className={`${Styles.msgBox} ${Styles.success}`}>
+                    <p>Revise que la informacion sea correcta y que su email se encuentre verificado</p>
+                  </div> : <div></div>
                 }
             </form>
         </section>

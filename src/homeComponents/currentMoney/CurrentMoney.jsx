@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
 import Styles from './CurrentMoneyStyle.module.css'
 
-export const CurrentMoney = () => {
+export const CurrentMoney = ({ amount }) => {
+
+
 
     return(
         <article className={Styles.currentMoneyContainer}>
             <div className={Styles.availableMoney}>
                 <p>Dinero disponible:</p>
-                <p className={Styles.amount}>$32500</p>
+                <p className={Styles.amount}>${amount}</p>
             </div>
             <div className={Styles.buttons}>
                 <Link className={Styles.linkInfo} to='/account-information'>
