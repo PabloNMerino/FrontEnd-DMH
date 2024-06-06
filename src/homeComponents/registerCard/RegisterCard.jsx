@@ -12,6 +12,9 @@ export const RegisterCard = () => {
     const [errors, setErrors] = useState([])
     const [month, setMonth] = useState('')
     const [year, setYear] = useState('')
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const [status, setStatus] = useState(0)
+    const [registerError, setRegisterError] = useState('')
 
     const handleHolderChange = (e) => {
         setErrors([])
@@ -20,6 +23,7 @@ export const RegisterCard = () => {
 
     const handleNumberChange = (e) => {
         setErrors([])
+        setRegisterError('')
         setNumber(e.target.value)
     }
 
@@ -77,10 +81,49 @@ export const RegisterCard = () => {
         return errors.length;
     };
 
+    const DynamicLetter = ({ status }) => {
+        if (status === 201) {
+          return (
+            <div className={`${Styles.msgBox} ${Styles.success}`}>
+              <p>Tarjeta registrada exitosamente</p>
+            </div>
+          );
+        } else {
+            return (
+                <button className={Styles.registerBtn} type="submit" onClick={(e) => handleRegister(e)}>Registrar Tarjeta</button>
+              );
+        }
+      };
+
     const handleRegister = (e) => {
         e.preventDefault(); 
         if(validateRegisterForm() === 0) {
-            console.log("registro exitoso");
+
+            const url = "http://localhost:8084/account/register-card"
+
+            const cardData = {
+                holder,
+                number,
+                expirationDate: new Date(year, month-1),
+                cvv
+            }
+
+            const settings = {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${userToken}`
+                },
+                body: JSON.stringify(cardData),
+            }
+
+            fetch(url, settings)
+                .then(response => {
+                    setStatus(response.status)
+                    if(response.status==409) {
+                        setRegisterError("La tarjeta ya fue previamente registrada")
+                    }
+                })
         } else {
             console.log("hola");
         }
@@ -111,7 +154,7 @@ export const RegisterCard = () => {
                         </div>
                     </form>
                 </div>
-                <button className={Styles.registerBtn} type="submit" onClick={(e) => handleRegister(e)}>Registrar Tarjeta</button>
+                <DynamicLetter status={status}/>
                 {
                     errors.length>0? <div className={Styles.errorsContainer}>
                         {
@@ -122,6 +165,9 @@ export const RegisterCard = () => {
                             })
                         }
                     </div> : <div></div>
+                }
+                {
+                    registerError.length!=0? <div className={`${Styles.msgBox} ${Styles.fail}`}><p>{registerError}</p></div>:<div></div>
                 }
                 <Link to="/cards" className={Styles.atrasBtn}>Atras</Link>
             </article>

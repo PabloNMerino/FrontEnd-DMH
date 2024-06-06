@@ -68,7 +68,6 @@ export const UpdateAlias = () => {
                 <button className={Styles.updateBtn} type='submit' onClick={(e) => handleUpdate(e)}>Actualizar</button>
               );
         }
-
       };
 
 
