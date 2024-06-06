@@ -35,6 +35,22 @@ export const Cards = () => {
             .then(data => setCardList(data))
     }
 
+    const removeCard = (number) => {
+        const url = `http://localhost:8084/account/delete-card/${number}`
+        const settings = {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+
+        fetch(url, settings)
+            .then(response => {
+                setCardList(cardList.filter(card => card.number !== number))
+            })
+    }
+
 
 
     return(
@@ -46,7 +62,7 @@ export const Cards = () => {
                         {
                             cardList.map((card, index) => {
                                 return(
-                                    <SingleCard {...card} key={index}/>
+                                    <SingleCard {...card} key={index} remove={removeCard}/>
                                 )
                             })
                         }
