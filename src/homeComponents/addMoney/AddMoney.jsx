@@ -1,41 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Styles from './AddMoneyStyle.module.css'
 import { Link } from 'react-router-dom';
 
 export const AddMoney = () => {
 
-    const [cardId, setCardId] = useState();
+    const [cardNumber, setCardNumber] = useState('');
     const [amount, setAmount] = useState();
     const [error, setError] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [cardList, setCardList] = useState([])
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
 
-    const cardList = [
-        {
-            id: 1,
-            holder: "Pablo Merino",
-            number: "1234 1234 1234 1234",
-            expirationDate: "17-11-2024",
-            cvv: "123"
-        },
-        {
-            id: 2,
-            holder: "Pablo Nicolás Merino",
-            number: "5678 5678 5678 5678",
-            expirationDate: "03-05-2028",
-            cvv: "456"
-        },
-        {
-            id: 3,
-            holder: "Pablo Nicolás Merino",
-            number: "9012 9012 9012 9012",
-            expirationDate: "10-10-2029",
-            cvv: "789"
+
+    const getCards = async() => {
+        const url="http://localhost:8084/account/cards"
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
         }
-    ]
 
-    const applyCard = (cardId, index) => {
+        fetch(url, settings)
+            .then(response => response.json())
+            .then(data => setCardList(data))
+    }
+
+    useEffect(()=>{
+        if(cardList.length==0){
+            getCards();
+        }
+    },[])
+
+    const applyCard = (cardNumber, index) => {
         setActiveIndex(index)
-        setCardId(cardId)
+        setCardNumber(cardNumber)
     }
 
     const handleAmountChange = (e) => {
@@ -57,6 +57,21 @@ export const AddMoney = () => {
     const handleForm = (e) => {
         e.preventDefault(); 
         if(!validateForm()) {
+            const depositBody = {
+                cardNumber,
+                amount
+            }
+            const url = "http://localhost:8084/account/deposit"
+            const settings = {
+                method: 'PATCH',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${userToken}`
+                },
+                body: JSON.stringify(depositBody),
+            }
+
+            fetch(url, settings)
             console.log("Actualizacion exitosa");
         } else {
             console.log('hola');
@@ -72,7 +87,7 @@ export const AddMoney = () => {
                     {
                         cardList.map((card, index) => {
                             return(
-                                <div key={index} className={`${Styles.cardContainer} ${activeIndex==index? `${Styles.selected}`:`${Styles.notSelected}`}`} onClick={()=>applyCard(card.id, index)} >
+                                <div key={index} className={`${Styles.cardContainer} ${activeIndex==index? `${Styles.selected}`:`${Styles.notSelected}`}`} onClick={()=>applyCard(card.number, index)} >
                                     <img src="src/assets/credit-card.png" alt="card" className={Styles.card} />
                                     <p>{card.number}</p>
                                     <p>{card.expirationDate}</p>
