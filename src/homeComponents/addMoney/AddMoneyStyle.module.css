@@ -105,8 +105,29 @@ cursor: pointer;
     font-weight: 600;
 }
 
+.successMsg {
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: "Archivo", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 
 .errorsContainer {
     margin-bottom: 20px;
     align-self: center;
+}
+
+.noCardMsg {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color: brown;
+    padding: 4px 6px;
+    border-radius: 5px;
+    width: fit-content;
+    text-align: center;
 }

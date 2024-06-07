@@ -68,6 +68,9 @@ export const Cards = () => {
                         }
                     </div>
                 </div>
+                {
+                    cardList.length==0? <div className={Styles.noCardMsg}>No tiene tarjetas asociadas</div> : <div></div>
+                }
                 <Link to="/register-card">
                     <div className={Styles.plusBtn}>
                             <img src="src/assets/boton-mas.png" alt="mas" />

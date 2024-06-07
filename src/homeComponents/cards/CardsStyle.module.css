@@ -44,3 +44,15 @@
 .plusBtn img {
     width: 40px;
 }
+
+.noCardMsg {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color: brown;
+    padding: 4px 6px;
+    border-radius: 5px;
+    width: fit-content;
+    text-align: center;
+    align-self: center;
+}

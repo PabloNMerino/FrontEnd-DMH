@@ -1,51 +1,78 @@
 import { Link } from 'react-router-dom'
 import { ActivityCard } from '../activityCard/ActivityCards'
 import Styles from './TransferencesStyle.module.css'
+import { useEffect, useState } from 'react'
 
 export const Transferences = () => {
 
-    const transferencias = [
-        {
-            id: 1,
-            userId: "Pablo Merino",
-            senderId: "Pablo Merino",
-            receiverId: "Dafni Vamvakianos",
-            amountofMoney: 1200.0,
-            date: "2025-03-07"
-        },
-        {
-            id: 2,
-            userId: "Pablo Merino",
-            senderId: "Dafni Vamvakianos",
-            receiverid: "Pablo Merino",
-            amountofMoney: 100.0,
-            date: "2025-03-07"
-        },
-        {
-            id: 3,
-            userId: "Pablo Merino",
-            senderId: "Pablo Merino",
-            receiverId: "Dafni Vamvakianos",
-            amountofMoney: 200.0,
-            date: "2025-03-07"
-        },
-        {
-            id: 4,
-            userId: "Pablo Merino",
-            senderId: "Pablo Merino",
-            receiverId: "Dafni Vamvakianos",
-            amountofMoney: 300.0,
-            date: "2025-03-07"
-        },
-        {
-            id: 5,
-            userId: "Pablo Merino",
-            senderId: "Dafni Vamvakianos",
-            receiverId: "Pablo Merino",
-            amountofMoney: 400.0,
-            date: "2025-03-07"
+    const [transferences, setTransferences] = useState([])
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const [userId, setUserId] = useState()
+    const [userFullName, setUserFullName] = useState(``)
+
+    
+    useEffect(()=>{
+        if(transferences.length==0) {
+            getTransferences()
         }
-    ]
+        getAccountInfo()
+    },[])
+
+    useEffect(()=>{
+        if(userId!=undefined) {
+            getUserInfo()
+        }
+    },[userId])
+
+    const getTransferences = async() => {
+        const url = "http://localhost:8084/account/activity"
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+
+        const response = await fetch(url, settings)
+        const data = await response.json()
+        setTransferences(data)
+    }
+
+
+    const getAccountInfo = async() => {
+        const url = 'http://localhost:8084/account/user-information'
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+        const response = await fetch(url, settings)
+        const data = await response.json()
+        setUserId(data.userId)
+    }
+
+    
+    const getUserInfo = async() => {
+        const url = `http://localhost:8084/user/${userId}`
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+        const response = await fetch(url, settings)
+        const data = await response.json()
+        setUserFullName(`${data.name} ${data.lastName}`)
+        console.log(data);
+    }
+
+
+
+
 
     return(
         <section className={Styles.transferencesSection}>
@@ -54,10 +81,10 @@ export const Transferences = () => {
                     <Link className={Styles.returnHomeTop}to='/home'>Volver a home</Link>
                     <div className={Styles.transferencesContainer}>
                         {
-                            transferencias.map((transferencia, index) => {
+                            transferences.map((transference, index) => {
                                 return(
                                     <Link key={index} className={Styles.detailsLink} to='/details'>
-                                        <ActivityCard {...transferencia}  />
+                                        <ActivityCard user={userId} userFullName={userFullName} {...transference}  />
                                     </Link>
                                 )
                             })

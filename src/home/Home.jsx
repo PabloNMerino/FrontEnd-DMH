@@ -9,6 +9,7 @@ export const Home = () => {
     const [accountInfo, setAccountInfo] = useState({})
     const [user, setUser] = useState({})
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const [userFullName, setUserFullName] = useState('')
 
 
     useEffect(() => {
@@ -39,7 +40,6 @@ export const Home = () => {
             .then(response => response.json())
             .then(data => {
                 setAccountInfo(data)
-                console.log(data);
             })    
     }
 
@@ -58,7 +58,7 @@ export const Home = () => {
             .then(response => response.json())
             .then(data => {
                 setUser(data)
-                console.log(data);
+                setUserFullName(`${data.name} ${data.lastName}`)
             })    
     }
 
@@ -69,7 +69,7 @@ export const Home = () => {
                     <p className={Styles.logo}>DMH</p>
                     <div className={Styles.iconAndNameContainer}>
                         <div className={Styles.iconName}><p>PM</p></div>
-                        <span>Hola!, </span><span className={Styles.userName}>{user.name} {user.lastName}</span>
+                        <span>Hola!, </span><span className={Styles.userName}>{userFullName}</span>
                     </div>
                     <Link to="/profile" className={Styles.linkProfile}>
                         <div className={Styles.verPerfilBtn}>
@@ -85,7 +85,7 @@ export const Home = () => {
                 </Link>
             </div>
             <div>
-                <HomeActivity/>
+                <HomeActivity userId={accountInfo.userId} userName={userFullName}/>
             </div>
         </section>
     )

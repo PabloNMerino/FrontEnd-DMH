@@ -1,17 +1,40 @@
 import { useEffect, useState } from 'react'
 import Styles from './ActivityCardStyle.module.css'
 
-export const ActivityCard = ({id, userId, senderId, receiverId, amountofMoney, date}) => {
+export const ActivityCard = ({user, userFullName, id, senderId, receiverId, amountOfMoney, date}) => {
 
     const [activityColor, setActivityColor] = useState("ingreso");
-    const [title, setTitle] = useState(senderId)
+    const [title, setTitle] = useState()
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
 
     useEffect(()=>{
-        if(userId==senderId) {
+        
+        if(user==senderId) {
             setActivityColor("egreso");
-            setTitle(receiverId)
+            setTitle(title)
+            getUserInformation(receiverId)
+        } else {
+            getUserInformation(senderId)
         }
     },[])
+
+    const getUserInformation = async(id) => {
+        const url = `http://localhost:8084/user/${id}`
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+
+        const response = await fetch(url, settings)
+        const data = await response.json()
+        setTitle(`${data.name} ${data.lastName}`)
+
+    }
+
+
 
     return (
         <article className={Styles.cardArticle}>
@@ -20,7 +43,7 @@ export const ActivityCard = ({id, userId, senderId, receiverId, amountofMoney, d
                     <p>{title}</p>
                     <p className={Styles.date}>{date}</p>
                 </div>
-                <p className={`${Styles[activityColor]} ${Styles.moneyBox}`}>{activityColor==="ingreso"? <span></span> : <span>- </span>}${amountofMoney}</p>
+                <p className={`${Styles[activityColor]} ${Styles.moneyBox}`}>{activityColor==="ingreso"? <span></span> : <span>- </span>}${amountOfMoney}</p>
             </div>
             <div className={Styles.separation}></div>
         </article>

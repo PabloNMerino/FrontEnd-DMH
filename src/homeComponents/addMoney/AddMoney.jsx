@@ -10,6 +10,7 @@ export const AddMoney = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [cardList, setCardList] = useState([])
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const [successMsg, setSuccessMsg] = useState(false)
 
 
     const getCards = async() => {
@@ -40,6 +41,7 @@ export const AddMoney = () => {
 
     const handleAmountChange = (e) => {
         setError(false)
+        setSuccessMsg(false)
         setAmount(e.target.value)
     }
 
@@ -72,7 +74,7 @@ export const AddMoney = () => {
             }
 
             fetch(url, settings)
-            console.log("Actualizacion exitosa");
+            setSuccessMsg(true)
         } else {
             console.log('hola');
         }
@@ -85,6 +87,9 @@ export const AddMoney = () => {
                 <div className={Styles.cards}>
                     <p className={Styles.chooseCardText}>Elija la tarjeta: </p>
                     {
+                        cardList.length==0? <div className={Styles.noCardMsg}>Registre una tarjeta para poder ingresar dinero</div> : 
+                        <div>
+                    {
                         cardList.map((card, index) => {
                             return(
                                 <div key={index} className={`${Styles.cardContainer} ${activeIndex==index? `${Styles.selected}`:`${Styles.notSelected}`}`} onClick={()=>applyCard(card.number, index)} >
@@ -94,6 +99,8 @@ export const AddMoney = () => {
                                 </div>
                             )
                         })
+                    }
+                    </div>
                     }
                 </div>
                 <form action="">
@@ -106,6 +113,11 @@ export const AddMoney = () => {
                 {
                     error? <div className={Styles.errorsContainer}>
                                 <p className={Styles.errorMsg}>Ingrese Monto</p>
+                            </div> : <div></div>
+                }
+                 {
+                    successMsg? <div className={Styles.errorsContainer}>
+                                <p className={Styles.successMsg}>Operacion exitosa</p>
                             </div> : <div></div>
                 }
                 <Link to="/home" className={Styles.atrasBtn}>Atras</Link>

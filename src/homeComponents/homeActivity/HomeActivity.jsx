@@ -1,57 +1,46 @@
 import { Link } from 'react-router-dom'
 import { ActivityCard } from '../activityCard/ActivityCards'
 import Styles from './HomeActivityStyle.module.css'
+import { useEffect, useState } from 'react'
 
-export const HomeActivity = () => {
-const transferencias = [
-    {
-        id: 1,
-        userId: "Pablo Merino",
-        senderId: "Pablo Merino",
-        receiverId: "Dafni Vamvakianos",
-        amountofMoney: 1200.0,
-        date: "2025-03-07"
-    },
-    {
-        id: 2,
-        userId: "Pablo Merino",
-        senderId: "Dafni Vamvakianos",
-        receiverid: "Pablo Merino",
-        amountofMoney: 100.0,
-        date: "2025-03-07"
-    },
-    {
-        id: 3,
-        userId: "Pablo Merino",
-        senderId: "Pablo Merino",
-        receiverId: "Dafni Vamvakianos",
-        amountofMoney: 200.0,
-        date: "2025-03-07"
-    },
-    {
-        id: 4,
-        userId: "Pablo Merino",
-        senderId: "Pablo Merino",
-        receiverId: "Dafni Vamvakianos",
-        amountofMoney: 300.0,
-        date: "2025-03-07"
-    },
-    {
-        id: 5,
-        userId: "Pablo Merino",
-        senderId: "Dafni Vamvakianos",
-        receiverId: "Pablo Merino",
-        amountofMoney: 400.0,
-        date: "2025-03-07"
+export const HomeActivity = ({userId, userName}) => {
+
+    const [transferences, setTransferences] = useState([])
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+
+    useEffect(()=>{
+        if(transferences.length==0) {
+            getTransferences()
+        }
+    },[])
+
+    useEffect(()=>{
+        console.log(transferences);
+    },[transferences])
+
+    const getTransferences = async() => {
+        const url = "http://localhost:8084/account/transactions"
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+
+        const response = await fetch(url, settings)
+        const data = await response.json()
+        setTransferences(data)
     }
-]
+
     return(
         <section className={Styles.transferences}>
+            
             {
-                transferencias.map((transferencia, index) => {
+                transferences.map((transference, index) => {
                     return(
                         <Link key={index} className={Styles.detailsLink} to='/details'>
-                            <ActivityCard {...transferencia}/>
+                            <ActivityCard user={userId} userFullName={userName} {...transference}/>
                         </Link>
                     )
                 })
