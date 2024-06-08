@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { CurrentMoney } from '../homeComponents/currentMoney/CurrentMoney'
 import { HomeActivity } from '../homeComponents/homeActivity/HomeActivity'
 import Styles from './HomeStyle.module.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../context/userContext'
 
 export const Home = () => {
 
@@ -62,13 +63,17 @@ export const Home = () => {
             })    
     }
 
+
     return(
         <section className={Styles.homeSection}>
             <div>
                 <article className={Styles.homeHeader}>
                     <p className={Styles.logo}>DMH</p>
                     <div className={Styles.iconAndNameContainer}>
-                        <div className={Styles.iconName}><p>PM</p></div>
+                        {
+                            Object.keys(user).length != 0?  <div className={Styles.iconName}><p>{user.name.split('')[0]}{user.lastName.split('')[0]}</p></div> :  <div className={Styles.iconName}><p></p></div>
+                        }
+                       
                         <span>Hola!, </span><span className={Styles.userName}>{userFullName}</span>
                     </div>
                     <Link to="/profile" className={Styles.linkProfile}>

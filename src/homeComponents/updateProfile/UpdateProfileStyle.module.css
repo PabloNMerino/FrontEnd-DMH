@@ -86,3 +86,17 @@
     margin-bottom: 20px;
     align-self: center;
 }
+
+.msgBox{
+    box-sizing: border-box;
+    padding: 4px 8px;
+    border-radius: 5px;
+    margin: 10px auto;
+    background-color: rgb(68, 152, 88);
+}
+
+.msgBox p {
+    margin: 0;
+    color: white;
+    font-family: "Archivo", sans-serif;
+}

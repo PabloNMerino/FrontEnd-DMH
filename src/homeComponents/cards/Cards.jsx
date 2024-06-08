@@ -14,9 +14,6 @@ export const Cards = () => {
         }
     },[])
 
-    useEffect(() => {
-        console.log(cardList);
-    }, [cardList])
 
     const getCards = async() => {
 

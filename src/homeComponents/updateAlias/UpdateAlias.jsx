@@ -52,7 +52,6 @@ export const UpdateAlias = () => {
             .then(response => response.json())
             .then(data => {
                 setAliasUpdate(data.alias)
-                console.log(data);
             })    
     }
 

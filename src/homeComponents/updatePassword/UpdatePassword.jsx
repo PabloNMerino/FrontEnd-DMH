@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Styles from './UpdatePasswordStyle.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Oval } from 'react-loader-spinner'
 
 export const UpdatePassword = () => {
 
@@ -8,6 +9,10 @@ export const UpdatePassword = () => {
         password:"",
         passwordRepeated:"",
     })
+
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const [loading, setLoading] = useState(false)
+    const [status, setStatus] = useState(0)
 
     const [errors, setErrors] = useState([])
 
@@ -40,14 +45,52 @@ export const UpdatePassword = () => {
         return errors.length;
     };
 
+    const DynamicLetter = ({ status }) => {
+        if (status === 200) {
+          return (
+            <div className={Styles.msgBox}>
+              <p>Contraseña Actualizada exitosamente</p>
+            </div>
+          );
+        } else {
+            return (
+                <button className={Styles.updateBtn} type='submit' onClick={(e) => handleUpdate(e)}>Actualizar</button>
+              );
+        }
+      };
+
     const handleUpdate = (e) => {
         e.preventDefault(); 
         if(validateUpdateForm() === 0) {
+            setLoading(true)
+
+            const url = "http://localhost:8084/user/update-password"
+
+            const passwordBody = {
+                password: updPassword.password,
+                passwordRepeated: updPassword.passwordRepeated
+            }
+
+            const settings = {
+                method: 'PATCH',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${userToken}`
+                    },
+                    body: JSON.stringify(passwordBody),
+            }
+
+            fetch(url, settings)
+                .then(response => {
+                        setStatus(response.status)
+                        setLoading(false)
+                })
             console.log("Actualizacion exitosa");
         } else {
             console.log('hola');
         }
     }
+
 
     return(
         <section className={Styles.updatePasswordSection}>
@@ -63,7 +106,7 @@ export const UpdatePassword = () => {
                         <label htmlFor="reppass">Repita Contraseña</label>
                         <input type="password" id='reppass'value={updPassword.passwordRepeated} onChange={(e) => handlePasswordRepeatedChange(e)}/>
                     </div>
-                    <button className={Styles.updateBtn} type='submit' onClick={(e) => handleUpdate(e)}>Actualizar</button>
+                    <DynamicLetter status={status} />
                 </form>
                 {
                     errors.length>0? <div className={Styles.errorsContainer}>

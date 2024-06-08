@@ -67,7 +67,6 @@ export const Transferences = () => {
         const response = await fetch(url, settings)
         const data = await response.json()
         setUserFullName(`${data.name} ${data.lastName}`)
-        console.log(data);
     }
 
 
@@ -83,8 +82,8 @@ export const Transferences = () => {
                         {
                             transferences.map((transference, index) => {
                                 return(
-                                    <Link key={index} className={Styles.detailsLink} to='/details'>
-                                        <ActivityCard user={userId} userFullName={userFullName} {...transference}  />
+                                    <Link key={index} className={Styles.detailsLink} to='/details'  state={transference}>
+                                        <ActivityCard user={userId} userFullName={userFullName} {...transference}  {...transference}/>
                                     </Link>
                                 )
                             })

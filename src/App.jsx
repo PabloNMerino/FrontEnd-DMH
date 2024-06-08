@@ -16,6 +16,7 @@ import { Profile } from './homeComponents/profile/Profile'
 import { UpdateProfile } from './homeComponents/updateProfile/UpdateProfile'
 import { UpdatePassword } from './homeComponents/updatePassword/UpdatePassword'
 import { UpdateAlias } from './homeComponents/updateAlias/UpdateAlias'
+import { DataProvider } from './context/userContext'
 
 function App() {
 
@@ -39,10 +40,12 @@ function App() {
   ])
 
   return (
-    <div className='mainClass'>
-      {router}
-      <Footer />
-    </div>
+    <DataProvider>
+      <div className='mainClass'>
+        {router}
+        <Footer />
+      </div>
+    </DataProvider>
   )
 }
 export default App

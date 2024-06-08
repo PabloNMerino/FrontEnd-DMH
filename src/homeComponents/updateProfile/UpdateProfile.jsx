@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Styles from './UpdateProfileStyle.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Oval } from 'react-loader-spinner'
 
 export const UpdateProfile = () => {
 
@@ -10,7 +11,12 @@ export const UpdateProfile = () => {
         email:"",
         phoneNumber:""
     })
+    const [username, setUsername] = useState('')
+    const [userId, setUserId] = useState()
     const [errors, setErrors] = useState([])
+    const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const [loading, setLoading] = useState(false)
+    const [status, setStatus] = useState(0)
 
     const handleNameChange = (e) => {
         setErrors([])
@@ -30,6 +36,62 @@ export const UpdateProfile = () => {
     const handlePhoneChange = (e) => {
         setErrors([])
         setUserUpdate({...userUpdate, phoneNumber: e.target.value})
+    }
+
+    useEffect(() => {
+        if(userToken!='') {
+            accountInfoFetch()
+        }
+    }, [])
+
+    
+    useEffect(() => {
+        if(userId!=null) {
+            userInfoFetch()
+        }
+    }, [userId])
+
+    useEffect(()=>{},[])
+
+    const accountInfoFetch = async() => {
+        const url = 'http://localhost:8084/account/user-information'
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+
+        fetch(url, settings)
+            .then(response => response.json())
+            .then(data => {
+                setUserId(data.userId)
+            })    
+    }
+
+    const userInfoFetch = async() => {
+        const url = `http://localhost:8084/user/${userId}`
+        const settings = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            },
+        }
+
+        fetch(url, settings)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setUserUpdate({
+                    name: data.name,
+                    lastName:data.lastName,
+                    email:data.email,
+                    phoneNumber:data.phoneNumber
+                })
+                setUsername(data.username)
+            })    
     }
 
     const validateUpdateForm = () => {
@@ -67,10 +129,50 @@ export const UpdateProfile = () => {
         return errors.length;
     };
 
+    const DynamicLetter = ({ status }) => {
+        if (status === 200) {
+          return (
+            <div className={Styles.msgBox}>
+              <p>Usuario Actualizado exitosamente</p>
+            </div>
+          );
+        } else {
+            return (
+                <button className={Styles.updateBtn} type='submit' onClick={(e) => handleUpdate(e)}>Actualizar</button>
+              );
+        }
+      };
+
     const handleUpdate = (e) => {
         e.preventDefault(); 
         if(validateUpdateForm() === 0) {
-            console.log("Actualizacion exitosa");
+            setLoading(true)
+
+            const url = "http://localhost:8084/user/update-user"
+
+            const userBody = {
+                name: userUpdate.name,
+                lastName: userUpdate.lastName,
+                username,
+                email: userUpdate.email,
+                phoneNumber: userUpdate.phoneNumber
+            }
+
+            const settings = {
+                method: 'PATCH',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${userToken}`
+                    },
+                    body: JSON.stringify(userBody),
+            }
+
+            fetch(url, settings)
+                .then(response => {
+                        setStatus(response.status)
+                        setLoading(false)
+                })
+
         }
     }
 
@@ -96,7 +198,7 @@ export const UpdateProfile = () => {
                         <label htmlFor="">Telefono</label>
                         <input type="tel" id='number' value={userUpdate.phoneNumber} onChange={(e) => handlePhoneChange(e)}/>
                     </div>
-                    <button className={Styles.updateBtn} type='submit' onClick={(e) => handleUpdate(e)}>Actualizar</button>
+                    <DynamicLetter status={status} />
                 </form>
                 {
                     errors.length>0? <div className={Styles.errorsContainer}>
