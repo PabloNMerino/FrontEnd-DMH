@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './UpdateAliasStyle.module.css'
 import { useState, useEffect } from 'react'
 import { Oval } from 'react-loader-spinner'
@@ -11,6 +11,7 @@ export const UpdateAlias = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [status, setStatus] = useState(0)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
 
     const handleAliasChange = (e) => {
         setError("")
@@ -33,6 +34,11 @@ export const UpdateAlias = () => {
     };
 
     useEffect(() => {
+
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+        
         if(userToken!='') {
             accountInfoFetch()
         }

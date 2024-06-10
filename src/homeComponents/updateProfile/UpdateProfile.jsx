@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './UpdateProfileStyle.module.css'
 import { useEffect, useState } from 'react'
 import { Oval } from 'react-loader-spinner'
@@ -17,6 +17,7 @@ export const UpdateProfile = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0)
+    const navigate = useNavigate();
 
     const handleNameChange = (e) => {
         setErrors([])
@@ -39,11 +40,16 @@ export const UpdateProfile = () => {
     }
 
     useEffect(() => {
+
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+
         if(userToken!='') {
             accountInfoFetch()
         }
     }, [])
-
+    , useNavigate
     
     useEffect(() => {
         if(userId!=null) {
@@ -51,7 +57,6 @@ export const UpdateProfile = () => {
         }
     }, [userId])
 
-    useEffect(()=>{},[])
 
     const accountInfoFetch = async() => {
         const url = 'http://localhost:8084/account/user-information'
@@ -83,7 +88,6 @@ export const UpdateProfile = () => {
         fetch(url, settings)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setUserUpdate({
                     name: data.name,
                     lastName:data.lastName,

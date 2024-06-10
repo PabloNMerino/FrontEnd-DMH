@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './CvuAndAliasStyle.module.css'
 import { useEffect, useState } from 'react'
 
@@ -7,8 +7,14 @@ export const CvuAndAlias = () => {
     const [alias, setAlias] = useState('')
     const [cvu, setCvu] = useState('')
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const navigate = useNavigate();
 
     useEffect(() => {
+
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+        
         if(userToken!='') {
             accountInfoFetch()
         }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Styles from './LoginStyle.module.css'
 import { Oval } from 'react-loader-spinner'
@@ -13,6 +13,13 @@ export const Login = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const[logError, setLogError] = useState(false)
+
+    useEffect(()=>{
+        if(sessionStorage.getItem('token')!==null) {
+            sessionStorage.removeItem('token')
+        }
+    },[])
+
 
     const handleMailChange = (e) => {
         setResponseError(false)

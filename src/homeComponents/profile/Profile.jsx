@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './ProfileStyle.module.css'
 import { useEffect, useState } from 'react'
 
@@ -7,12 +7,18 @@ export const Profile = () => {
     const [accountInfo, setAccountInfo] = useState({})
     const [user, setUser] = useState({})
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const navigate = useNavigate();
     
     useEffect(() => {
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+
         if(userToken!='') {
             accountFetch()
         }
     }, [])
+
 
     useEffect(()=> {
         if(Object.keys(accountInfo).length != 0) {

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CurrentMoney } from '../homeComponents/currentMoney/CurrentMoney'
 import { HomeActivity } from '../homeComponents/homeActivity/HomeActivity'
 import Styles from './HomeStyle.module.css'
@@ -11,9 +11,13 @@ export const Home = () => {
     const [user, setUser] = useState({})
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [userFullName, setUserFullName] = useState('')
+    const navigate = useNavigate();
 
 
     useEffect(() => {
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
         if(userToken!='') {
             accountFetch()
         }
@@ -63,6 +67,11 @@ export const Home = () => {
             })    
     }
 
+    const logout = () => {
+        sessionStorage.removeItem('token');
+        navigate("/")
+    }
+
 
     return(
         <section className={Styles.homeSection}>
@@ -81,6 +90,7 @@ export const Home = () => {
                             <p>Ver Perfil</p>
                         </div>
                     </Link>
+                    <button onClick={()=>logout()} className={Styles.logoutBtn}><p>Logout</p></button>
                 </article>
                 <CurrentMoney amount={accountInfo.balance}/>
                 <Link className={Styles.linkToCards} to="/cards">

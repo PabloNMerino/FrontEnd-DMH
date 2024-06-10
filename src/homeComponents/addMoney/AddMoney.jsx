@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Styles from './AddMoneyStyle.module.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const AddMoney = () => {
 
@@ -11,6 +11,7 @@ export const AddMoney = () => {
     const [cardList, setCardList] = useState([])
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [successMsg, setSuccessMsg] = useState(false)
+    const navigate = useNavigate();
 
 
     const getCards = async() => {
@@ -29,6 +30,11 @@ export const AddMoney = () => {
     }
 
     useEffect(()=>{
+
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+        
         if(cardList.length==0){
             getCards();
         }

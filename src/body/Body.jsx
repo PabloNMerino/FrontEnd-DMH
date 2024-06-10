@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import Styles from './BodyStyle.module.css';
 import { Link } from "react-router-dom";
 
 export const Body = () => {
+
+    useEffect(()=>{
+        if(sessionStorage.getItem('token')!==null) {
+            sessionStorage.removeItem('token')
+        }
+    },[])
 
     return(
         <main>

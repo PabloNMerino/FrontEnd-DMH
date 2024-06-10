@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Styles from './TransferDetailsStyle.module.css'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/userContext';
@@ -16,8 +16,14 @@ export const TransferDetails = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [dataSecondUser, setDataSecondUser] = useState({})
     const [cvu,setCvu] = useState('')
+    const navigate = useNavigate();
     
     useEffect(()=>{
+        
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+        
         if(transfer.senderId == userId) {
             setSenderName(userFullName)
             getReceiverUser(transfer.receiverId)

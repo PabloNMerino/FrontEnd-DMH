@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './SendMoneyStyle.module.css'
 import { useEffect, useState } from 'react'
 
@@ -10,6 +10,13 @@ export const SendMoney = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [responseStatus, setResponseStatus] = useState(0)
     const [amountAvailable, setAmountAvailable] = useState()
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+    },[])
 
     const handleCvuAliasChange = (e) => {
         setErrors([])

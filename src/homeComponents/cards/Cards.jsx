@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { SingleCard } from '../singleCard/SingleCard'
 import Styles from './CardsStyle.module.css'
 import { useEffect, useState } from 'react'
@@ -7,8 +7,14 @@ export const Cards = () => {
 
     const [cardList, setCardList] = useState([])
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
+    const navigate = useNavigate();
 
     useEffect(()=>{
+
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+        
         if(cardList.length==0) {
             getCards()
         }

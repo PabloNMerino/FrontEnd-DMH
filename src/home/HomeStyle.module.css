@@ -56,6 +56,10 @@
     margin-top: 13px;
 }
 
+.verPerfilBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2 );
+}
+
 .verPerfilBtn p {
     margin: 0;
     font-size: 13px;
@@ -82,4 +86,25 @@
 .linkToCards {
     color: white;
     text-decoration: none;
+}
+
+.logoutBtn {
+    width: fit-content;
+    background-color: rgb(245, 69, 49);
+    border: none;
+    padding: 3px 11px;
+    border-radius: 5px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logoutBtn:hover {
+    background-color: rgb(92, 15, 9);
+}
+
+.logoutBtn p {
+    margin: 0;
+    font-size: 13px;
+    color: white;
 }

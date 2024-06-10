@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from './UpdatePasswordStyle.module.css'
 import { useEffect, useState } from 'react'
 import { Oval } from 'react-loader-spinner'
@@ -13,8 +13,15 @@ export const UpdatePassword = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0)
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState([])
+
+    useEffect(()=>{
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+    },[])
 
     const handlePasswordChange = (e) => {
         setErrors([])

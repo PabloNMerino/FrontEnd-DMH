@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ActivityCard } from '../activityCard/ActivityCards'
 import Styles from './TransferencesStyle.module.css'
 import { useEffect, useState } from 'react'
@@ -9,9 +9,15 @@ export const Transferences = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [userId, setUserId] = useState()
     const [userFullName, setUserFullName] = useState(``)
+    const navigate = useNavigate();
 
     
     useEffect(()=>{
+                
+        if(sessionStorage.getItem('token')===null) {
+            navigate("/")
+        }
+        
         if(transferences.length==0) {
             getTransferences()
         }
