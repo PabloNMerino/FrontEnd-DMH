@@ -14,15 +14,18 @@ export const ActivityCard = ({user, userFullName, id, senderId, receiverId, amou
     const userId = userValues.accountInfo.userId;
 
     useEffect(()=>{
-        
-        if(userId==senderId) {
-            setActivityColor("egreso");
-            getUserInformation(receiverId)
-        } else {
-            getUserInformation(senderId)
+
+        console.log("userId: " + userId);
+        console.log("senderId: " + senderId);        
+        if(userId!=undefined) {
+            if(userId==senderId) {
+                setActivityColor("egreso");
+                getUserInformation(receiverId)
+            } else {
+                getUserInformation(senderId)
+            }
         }
     },[userId, title])
-
 
 
     const getUserInformation = async(id) => {

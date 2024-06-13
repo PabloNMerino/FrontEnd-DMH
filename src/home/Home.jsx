@@ -18,9 +18,11 @@ export const Home = () => {
         if(sessionStorage.getItem('token')===null) {
             navigate("/")
         }
+
         if(userToken!='') {
             accountFetch()
         }
+
     }, [])
 
     useEffect(()=> {
@@ -28,6 +30,7 @@ export const Home = () => {
             userFetch()
         }
     }, [accountInfo])
+
 
 
     const accountFetch = async () => {
