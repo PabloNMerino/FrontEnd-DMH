@@ -40,7 +40,6 @@ export const TransferDetails = () => {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': `Bearer ${userToken}`
             },
         }
 
@@ -57,7 +56,6 @@ export const TransferDetails = () => {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': `Bearer ${userToken}`
             },
         }
 

@@ -81,7 +81,6 @@ export const UpdateProfile = () => {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': `Bearer ${userToken}`
             },
         }
 

@@ -58,7 +58,6 @@ export const Home = () => {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': `Bearer ${userToken}`
             },
         }
 
@@ -69,6 +68,7 @@ export const Home = () => {
                 setUserFullName(`${data.name} ${data.lastName}`)
             })    
     }
+
 
     const logout = () => {
         sessionStorage.removeItem('token');

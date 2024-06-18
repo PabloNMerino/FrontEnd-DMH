@@ -51,7 +51,6 @@ export const Profile = () => {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': `Bearer ${userToken}`
             },
         }
 

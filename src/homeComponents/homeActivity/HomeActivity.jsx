@@ -42,7 +42,7 @@ export const HomeActivity = ({userId, userName}) => {
                     transferences.map((transference, index) => {
                         return(
                             <Link key={index} className={Styles.detailsLink} to='/details' state={transference}>
-                                <ActivityCard user={userId} userFullName={userName} {...transference}/>
+                                <ActivityCard user={userId} userFullName={userName} transferenceId={transference.id} transferDate={transference.date}/>
                             </Link>
                         )
                     })
