@@ -119,7 +119,7 @@ export const Register = () => {
         if (status === 201) {
           return (
             <div className={`${Styles.msgBox} ${Styles.success}`}>
-              <p>Registro exitoso! verifique su correo electronico en su casilla de email para poder <Link to="/login">Loguearse</Link></p>
+              <p>Registro exitoso! A partir de ahora puede <Link to="/login">Loguearse</Link></p>
             </div>
           );
         } else {
