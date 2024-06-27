@@ -16,7 +16,7 @@ export const HomeActivity = ({userId, userName}) => {
     },[])
 
     const getTransferences = async() => {
-        const url = "http://localhost:8084/account/transactions"
+        const url = "http://vps-4202860-x.dattaweb.com:8084/account/transactions"
         const settings = {
             method: 'GET',
             headers: {

@@ -76,7 +76,7 @@ export const SendMoney = () => {
     const handleSend = (e) => {
         e.preventDefault(); 
         if(validateRegisterForm() === 0) {
-            const url = "http://localhost:8084/account/send-money"
+            const url = "http://vps-4202860-x.dattaweb.com:8084/account/send-money"
 
             const sendBody = {
                 destinyAccount: cvuAlias,

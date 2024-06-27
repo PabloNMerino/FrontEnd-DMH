@@ -15,7 +15,7 @@ export const AddMoney = () => {
 
 
     const getCards = async() => {
-        const url="http://localhost:8084/account/cards"
+        const url="http://vps-4202860-x.dattaweb.com:8084/account/cards"
         const settings = {
             method: 'GET',
             headers: {
@@ -69,7 +69,7 @@ export const AddMoney = () => {
                 cardNumber,
                 amount
             }
-            const url = "http://localhost:8084/account/deposit"
+            const url = "http://vps-4202860-x.dattaweb.com:8084/account/deposit"
             const settings = {
                 method: 'PATCH',
                 headers: {

@@ -131,7 +131,7 @@ export const Register = () => {
       };
 
 
-    const url = "http://localhost:8084/user/register"
+    const url = "http://vps-4202860-x.dattaweb.com:8084/user/register"
 
     const handleRegister = (e) => {
         e.preventDefault(); 

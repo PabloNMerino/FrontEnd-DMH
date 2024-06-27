@@ -35,7 +35,7 @@ export const Home = () => {
 
     const accountFetch = async () => {
 
-        const url = 'http://localhost:8084/account/user-information'
+        const url = 'http://vps-4202860-x.dattaweb.com:8084/account/user-information'
         const settings = {
             method: 'GET',
             headers: {
@@ -53,7 +53,7 @@ export const Home = () => {
 
     const userFetch = async () => {
 
-        const url = `http://localhost:8084/user/${accountInfo.userId}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/user/${accountInfo.userId}`
         const settings = {
             method: 'GET',
             headers: {

@@ -42,7 +42,7 @@ export const ActivityCard = ({transferenceId, transferDate}) => {
     },[userId])
 
     const getTransference= async() => {
-        const url = `http://localhost:8084/account/activity/${transferenceId}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/account/activity/${transferenceId}`
         const settings = {
             method: 'GET',
             headers: {
@@ -61,7 +61,7 @@ export const ActivityCard = ({transferenceId, transferDate}) => {
 
     
     const getAccountInfo = async() => {
-        const url = 'http://localhost:8084/account/user-information'
+        const url = 'http://vps-4202860-x.dattaweb.com:8084/account/user-information'
         const settings = {
             method: 'GET',
             headers: {
@@ -76,7 +76,7 @@ export const ActivityCard = ({transferenceId, transferDate}) => {
 
 
     const getUserInformation = async(id) => {
-        const url = `http://localhost:8084/user/${id}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/user/${id}`
         const settings = {
             method: 'GET',
             headers: {

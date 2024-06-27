@@ -99,7 +99,7 @@ export const RegisterCard = () => {
         e.preventDefault(); 
         if(validateRegisterForm() === 0) {
 
-            const url = "http://localhost:8084/account/register-card"
+            const url = "http://vps-4202860-x.dattaweb.com:8084/account/register-card"
 
             const cardData = {
                 holder,

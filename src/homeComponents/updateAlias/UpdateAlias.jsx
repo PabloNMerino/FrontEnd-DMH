@@ -45,7 +45,7 @@ export const UpdateAlias = () => {
     }, [])
 
     const accountInfoFetch = async() => {
-        const url = 'http://localhost:8084/account/user-information'
+        const url = 'http://vps-4202860-x.dattaweb.com:8084/account/user-information'
         const settings = {
             method: 'GET',
             headers: {
@@ -85,7 +85,7 @@ export const UpdateAlias = () => {
 
         if(validateUpdateForm() === 0) {
             setLoading(true)
-            const url = "http://localhost:8084/user/update-alias"
+            const url = "http://vps-4202860-x.dattaweb.com:8084/user/update-alias"
 
             const settings = {
                 method: 'PATCH',

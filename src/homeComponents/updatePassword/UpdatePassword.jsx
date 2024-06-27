@@ -71,7 +71,7 @@ export const UpdatePassword = () => {
         if(validateUpdateForm() === 0) {
             setLoading(true)
 
-            const url = "http://localhost:8084/user/update-password"
+            const url = "http://vps-4202860-x.dattaweb.com:8084/user/update-password"
 
             const passwordBody = {
                 password: updPassword.password,

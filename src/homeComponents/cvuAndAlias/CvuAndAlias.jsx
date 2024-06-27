@@ -21,7 +21,7 @@ export const CvuAndAlias = () => {
     }, [])
 
     const accountInfoFetch = async() => {
-        const url = 'http://localhost:8084/account/user-information'
+        const url = 'http://vps-4202860-x.dattaweb.com:8084/account/user-information'
         const settings = {
             method: 'GET',
             headers: {

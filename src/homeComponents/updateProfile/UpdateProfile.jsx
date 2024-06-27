@@ -59,7 +59,7 @@ export const UpdateProfile = () => {
 
 
     const accountInfoFetch = async() => {
-        const url = 'http://localhost:8084/account/user-information'
+        const url = 'http://vps-4202860-x.dattaweb.com:8084/account/user-information'
         const settings = {
             method: 'GET',
             headers: {
@@ -76,7 +76,7 @@ export const UpdateProfile = () => {
     }
 
     const userInfoFetch = async() => {
-        const url = `http://localhost:8084/user/${userId}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/user/${userId}`
         const settings = {
             method: 'GET',
             headers: {
@@ -151,7 +151,7 @@ export const UpdateProfile = () => {
         if(validateUpdateForm() === 0) {
             setLoading(true)
 
-            const url = "http://localhost:8084/user/update-user"
+            const url = "http://vps-4202860-x.dattaweb.com:8084/user/update-user"
 
             const userBody = {
                 name: userUpdate.name,

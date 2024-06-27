@@ -23,7 +23,7 @@ export const Cards = () => {
 
     const getCards = async() => {
 
-        const url = "http://localhost:8084/account/cards"
+        const url = "http://vps-4202860-x.dattaweb.com:8084/account/cards"
 
         const settings = {
             method: 'GET',
@@ -39,7 +39,7 @@ export const Cards = () => {
     }
 
     const removeCard = (number) => {
-        const url = `http://localhost:8084/account/delete-card/${number}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/account/delete-card/${number}`
         const settings = {
             method: 'DELETE',
             headers: {

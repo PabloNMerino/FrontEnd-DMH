@@ -23,19 +23,22 @@ export const TransferDetails = () => {
         if(sessionStorage.getItem('token')===null) {
             navigate("/")
         }
-        
+        /*
         if(transfer.senderId == userId) {
             setSenderName(userFullName)
             getReceiverUser(transfer.receiverId)
         } else {
             setReceiverName(userFullName)
             getSenderUser(transfer.senderId)
-        }
+        }*/
+
+            getSenderUser(transfer.senderId)
+            getReceiverUser(transfer.receiverId)
     },[])
 
 
     const getReceiverUser = async(id) => {
-        const url = `http://localhost:8084/user/${id}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/user/${id}`
         const settings = {
             method: 'GET',
             headers: {
@@ -51,7 +54,7 @@ export const TransferDetails = () => {
     }
 
     const getSenderUser = async(id) => {
-        const url = `http://localhost:8084/user/${id}`
+        const url = `http://vps-4202860-x.dattaweb.com:8084/user/${id}`
         const settings = {
             method: 'GET',
             headers: {
@@ -63,7 +66,6 @@ export const TransferDetails = () => {
         const data = await response.json()
         setDataSecondUser(data)
         setSenderName(`${data.name} ${data.lastName}`)
-        setCvu(userValues.userInfo.cvu)
     }
 
     return(
