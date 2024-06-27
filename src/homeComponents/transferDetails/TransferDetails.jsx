@@ -8,6 +8,10 @@ export const TransferDetails = () => {
 
     const location = useLocation()
     const transfer = location.state
+    let momentDate = moment.utc(transfer.date);
+    let dateToLocal = momentDate.local();
+    let localDate = dateToLocal.format('DD/MM/YY');
+    let localTime = dateToLocal.format('hh:mm:ss')
     const[senderName, setSenderName] = useState('')
     const[receiverName, setReceiverName] = useState('')
     const userValues = useContext(UserContext)
@@ -73,8 +77,8 @@ export const TransferDetails = () => {
             <article className={Styles.detailsArticle}>
                 <div className={Styles.detailsContainer}>
                     <p><span className={Styles.titleDetail}>Tipo de Transferencia:</span> Inmediata</p>
-                    <p><span className={Styles.titleDetail}>Fecha:</span>{moment(transfer.date).format('DD/MM/YY')}</p>
-                    <p><span className={Styles.titleDetail}>Hora:</span> {moment(transfer.date).format('hh:mm:ss')}</p>
+                    <p><span className={Styles.titleDetail}>Fecha:</span>{localDate}</p>
+                    <p><span className={Styles.titleDetail}>Hora:</span> {localTime}</p>
                     <p><span className={Styles.titleDetail}>Importe:</span> ${transfer.amountOfMoney}</p>
                     <p><span className={Styles.titleDetail}>Nombre Originante:</span>{senderName}</p>
                     <p><span className={Styles.titleDetail}>Nombre Destinatario:</span>{receiverName}</p>

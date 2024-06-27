@@ -14,7 +14,9 @@ export const ActivityCard = ({transferenceId, transferDate}) => {
     const [date, setDate] = useState(transferDate)
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [transference, setTransference] = useState({})
-    let currentDate = moment(date).format('DD/MM/YY, h:mm a');
+    let momentDate = moment.utc(date);
+    let localDate = momentDate.local();
+    let localDateString = localDate.format('DD/MM/YY, h:mm a');
     const [userId, setUserId] = useState()
 
     useEffect(()=>{    
@@ -97,7 +99,7 @@ export const ActivityCard = ({transferenceId, transferDate}) => {
             <div className={Styles.card}>
                 <div className={Styles.transferInfo}>
                     <p>{title}</p>
-                    <p className={Styles.date}>{currentDate}</p>
+                    <p className={Styles.date}>{localDateString}</p>
                 </div>
                 <p className={`${Styles[activityColor]} ${Styles.moneyBox}`}>{activityColor==="ingreso"? <span></span> : <span>- </span>}${amountOfMoney}</p>
             </div>

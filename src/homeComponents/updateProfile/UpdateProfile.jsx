@@ -201,7 +201,18 @@ export const UpdateProfile = () => {
                         <label htmlFor="">Telefono</label>
                         <input type="tel" id='number' value={userUpdate.phoneNumber} onChange={(e) => handlePhoneChange(e)}/>
                     </div>
-                    <DynamicLetter status={status} />
+                    {
+                        !loading? <DynamicLetter status={status} /> : <div className={Styles.loader}><Oval
+                        visible={true}
+                        height="50"
+                        width="50"
+                        color="#4fa94d"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        /></div>
+                    }
+                    
                 </form>
                 {
                     errors.length>0? <div className={Styles.errorsContainer}>

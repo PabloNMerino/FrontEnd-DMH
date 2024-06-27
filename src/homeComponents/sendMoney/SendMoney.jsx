@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Styles from './SendMoneyStyle.module.css'
 import { useEffect, useState } from 'react'
+import { Oval } from 'react-loader-spinner'
 
 export const SendMoney = () => {
 
@@ -10,6 +11,7 @@ export const SendMoney = () => {
     const [userToken, setUserToken] = useState((sessionStorage.getItem('token') || ''))
     const [responseStatus, setResponseStatus] = useState(0)
     const [amountAvailable, setAmountAvailable] = useState()
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -76,6 +78,7 @@ export const SendMoney = () => {
     const handleSend = (e) => {
         e.preventDefault(); 
         if(validateRegisterForm() === 0) {
+            setLoading(true)
             const url = "http://vps-4202860-x.dattaweb.com:8084/account/send-money"
 
             const sendBody = {
@@ -93,7 +96,10 @@ export const SendMoney = () => {
             }
 
             fetch(url, settings)
-                .then(response => setResponseStatus(response.status))
+                .then(response => {
+                    setResponseStatus(response.status)
+                    setLoading(false)
+                })
 
         } else {
             console.log("hola");
@@ -113,7 +119,18 @@ export const SendMoney = () => {
                         <label htmlFor="amount">Monto</label>
                         <input type="number" id='amount' value={amount} onChange={(e) => handleAmountChange(e)}/>
                     </div>
-                <DynamicLetter status={responseStatus} />
+                    {
+                        !loading? <DynamicLetter status={responseStatus} /> : <div className={Styles.loader}><Oval
+                        visible={true}
+                        height="50"
+                        width="50"
+                        color="#4fa94d"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        /></div>
+                    }
+                
                 </form>
                 {
                     errors.length>0? <div className={Styles.errorsContainer}>
