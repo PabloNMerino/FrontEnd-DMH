@@ -72,7 +72,7 @@ export const Login = () => {
             body: JSON.stringify(userLogin)
         }
 
-        const url = "https://vps-4202860-x.dattaweb.com:8084/user/login"
+        const url = "http://vps-4202860-x.dattaweb.com:8084/user/login"
 
         if(validateLoginForm() === 0) {
             setLoading(true)
