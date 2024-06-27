@@ -138,7 +138,7 @@ export const Login = () => {
                 }
                 {
                     logError?  <div className={`${Styles.msgBox} ${Styles.success}`}>
-                    <p>Revise que la informacion sea correcta y que su email se encuentre verificado</p>
+                    <p>Revise que la informacion sea correcta</p>
                   </div> : <div></div>
                 }
             </form>
